@@ -1,6 +1,6 @@
 use std::task::{Context, Poll};
 
-use bytes::Buf;
+use ntex_bytes::Buf;
 
 use futures_util::ready;
 use tracing::trace;
@@ -263,7 +263,7 @@ mod tests {
     use super::*;
 
     use assert_matches::assert_matches;
-    use bytes::{BufMut, Bytes, BytesMut};
+    use ntex_bytes::{BufMut, Bytes, BytesMut};
     use futures_util::future::poll_fn;
     use std::{collections::VecDeque, fmt, sync::Arc};
 

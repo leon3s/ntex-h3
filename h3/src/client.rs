@@ -7,7 +7,7 @@ use std::{
     task::{Context, Poll, Waker},
 };
 
-use bytes::{Buf, Bytes, BytesMut};
+use ntex_bytes::{Buf, Bytes, BytesMut};
 use futures_util::future;
 use http::{request, HeaderMap, Response};
 use tracing::{info, trace};

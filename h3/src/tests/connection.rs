@@ -4,7 +4,7 @@
 use std::{borrow::BorrowMut, time::Duration};
 
 use assert_matches::assert_matches;
-use bytes::{Buf, Bytes, BytesMut};
+use ntex_bytes::{Buf, Bytes, BytesMut};
 use futures_util::future;
 use http::{Request, Response, StatusCode};
 

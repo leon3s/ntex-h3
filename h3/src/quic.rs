@@ -5,7 +5,7 @@
 
 use std::task::{self, Poll};
 
-use bytes::Buf;
+use ntex_bytes::Buf;
 
 use crate::ext::Datagram;
 pub use crate::proto::stream::{InvalidStreamId, StreamId};

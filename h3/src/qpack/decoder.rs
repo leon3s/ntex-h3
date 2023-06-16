@@ -1,4 +1,4 @@
-use bytes::{Buf, BufMut};
+use ntex_bytes::{Buf, BufMut};
 use std::{fmt, io::Cursor};
 
 use tracing::trace;
@@ -336,7 +336,7 @@ mod tests {
         let mut trailers = http::HeaderMap::new();
         trailers.insert("trailer", "value".parse().unwrap());
         trailers.insert("trailer2", "value2".parse().unwrap());
-        let mut buf = bytes::BytesMut::new();
+        let mut buf = ntex_bytes::BytesMut::new();
         let _ = crate::qpack::encode_stateless(
             &mut buf,
             crate::proto::headers::Header::trailer(trailers),

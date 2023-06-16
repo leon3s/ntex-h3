@@ -1,6 +1,6 @@
 use std::fmt;
 
-use bytes::{Buf, BufMut};
+use ntex_bytes::{Buf, BufMut};
 
 use crate::proto::coding::{self, BufExt, BufMutExt};
 

@@ -1,4 +1,4 @@
-use bytes::{Buf, BufMut};
+use ntex_bytes::{Buf, BufMut};
 
 use super::{
     parse_error::ParseError,

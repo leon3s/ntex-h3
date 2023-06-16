@@ -59,7 +59,7 @@ use std::{
     task::{Context, Poll},
 };
 
-use bytes::{Buf, BytesMut};
+use ntex_bytes::{Buf, BytesMut};
 use futures_util::{
     future::{self, Future},
     ready,
@@ -68,7 +68,8 @@ use http::{response, HeaderMap, Request, Response};
 use pin_project_lite::pin_project;
 use quic::RecvStream;
 use quic::StreamId;
-use tokio::sync::mpsc;
+
+use ntex_util::channel::mpsc;
 
 use crate::{
     config::Config,
@@ -114,8 +115,8 @@ where
     // List of all incoming streams that are currently running.
     ongoing_streams: HashSet<StreamId>,
     // Let the streams tell us when they are no longer running.
-    request_end_recv: mpsc::UnboundedReceiver<StreamId>,
-    request_end_send: mpsc::UnboundedSender<StreamId>,
+    request_end_recv: mpsc::Receiver<StreamId>,
+    request_end_send: mpsc::Sender<StreamId>,
     // Has a GOAWAY frame been sent? If so, this StreamId is the last we are willing to accept.
     sent_closing: Option<StreamId>,
     // Has a GOAWAY frame been received? If so, this is PushId the last the remote will accept.
@@ -618,7 +619,7 @@ impl Builder {
         C: quic::Connection<B>,
         B: Buf,
     {
-        let (sender, receiver) = mpsc::unbounded_channel();
+        let (sender, receiver) = mpsc::channel();
         Ok(Connection {
             inner: ConnectionInner::new(conn, SharedStateRef::default(), self.config).await?,
             max_field_section_size: self.config.max_field_section_size,
@@ -633,7 +634,7 @@ impl Builder {
 }
 
 struct RequestEnd {
-    request_end: mpsc::UnboundedSender<StreamId>,
+    request_end: mpsc::Sender<StreamId>,
     stream_id: StreamId,
 }
 

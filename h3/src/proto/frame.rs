@@ -1,4 +1,4 @@
-use bytes::{Buf, BufMut, Bytes};
+use ntex_bytes::{Buf, BufMut, Bytes};
 use std::{
     convert::TryInto,
     fmt::{self, Debug},

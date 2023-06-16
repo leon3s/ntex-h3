@@ -1,7 +1,7 @@
 use std::time::Duration;
 
 use assert_matches::assert_matches;
-use bytes::{Buf, BufMut, Bytes, BytesMut};
+use ntex_bytes::{Buf, BufMut, Bytes, BytesMut};
 use futures_util::future;
 use http::{request, HeaderMap, Request, Response, StatusCode};
 

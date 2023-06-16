@@ -4,10 +4,10 @@ use std::{
     task::{Context, Poll},
 };
 
-use bytes::{Buf, BufMut, Bytes};
+use ntex_bytes::{Buf, BufMut, Bytes};
 use futures_util::{future, ready};
 use pin_project_lite::pin_project;
-use tokio::io::ReadBuf;
+use ntex_io::ReadBuf;
 
 use crate::{
     buf::BufList,

@@ -1,4 +1,4 @@
-use bytes::{Buf, BufMut};
+use ntex_bytes::{Buf, BufMut};
 use std::{
     convert::TryFrom,
     fmt::{self, Display},
@@ -172,7 +172,7 @@ impl Display for InvalidStreamId {
 }
 
 impl Encode for StreamId {
-    fn encode<B: bytes::BufMut>(&self, buf: &mut B) {
+    fn encode<B: ntex_bytes::BufMut>(&self, buf: &mut B) {
         VarInt::from_u64(self.0).unwrap().encode(buf);
     }
 }

@@ -32,13 +32,13 @@ impl TryFrom<u64> for SessionId {
 }
 
 impl Encode for SessionId {
-    fn encode<B: bytes::BufMut>(&self, buf: &mut B) {
+    fn encode<B: ntex_bytes::BufMut>(&self, buf: &mut B) {
         VarInt::from_u64(self.0).unwrap().encode(buf);
     }
 }
 
 impl Decode for SessionId {
-    fn decode<B: bytes::Buf>(buf: &mut B) -> crate::proto::coding::Result<Self> {
+    fn decode<B: ntex_bytes::Buf>(buf: &mut B) -> crate::proto::coding::Result<Self> {
         Ok(Self(VarInt::decode(buf)?.into_inner()))
     }
 }

@@ -1,6 +1,6 @@
 use std::{convert::TryInto, fmt, ops::Div};
 
-use bytes::{Buf, BufMut};
+use ntex_bytes::{Buf, BufMut};
 
 pub use super::coding::UnexpectedEnd;
 

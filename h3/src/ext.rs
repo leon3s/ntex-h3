@@ -3,7 +3,7 @@
 use std::convert::TryFrom;
 use std::str::FromStr;
 
-use bytes::{Buf, Bytes};
+use ntex_bytes::{Buf, Bytes};
 
 use crate::{
     error::Code,
@@ -97,7 +97,7 @@ where
     }
 
     /// Encode the datagram to wire format
-    pub fn encode<D: bytes::BufMut>(self, buf: &mut D) {
+    pub fn encode<D: ntex_bytes::BufMut>(self, buf: &mut D) {
         (VarInt::from(self.stream_id) / 4).encode(buf);
         buf.put(self.payload);
     }

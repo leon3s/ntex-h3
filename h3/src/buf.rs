@@ -1,7 +1,7 @@
 use std::collections::VecDeque;
 use std::io::IoSlice;
 
-use bytes::{Buf, Bytes};
+use ntex_bytes::{Buf, Bytes};
 
 #[derive(Debug)]
 pub(crate) struct BufList<T> {
@@ -98,20 +98,20 @@ impl<T: Buf> Buf for BufList<T> {
         }
     }
 
-    #[inline]
-    fn chunks_vectored<'t>(&'t self, dst: &mut [IoSlice<'t>]) -> usize {
-        if dst.is_empty() {
-            return 0;
-        }
-        let mut vecs = 0;
-        for buf in &self.bufs {
-            vecs += buf.chunks_vectored(&mut dst[vecs..]);
-            if vecs == dst.len() {
-                break;
-            }
-        }
-        vecs
-    }
+    // #[inline]
+    // fn chunks_vectored<'t>(&'t self, dst: &mut [IoSlice<'t>]) -> usize {
+    //     if dst.is_empty() {
+    //         return 0;
+    //     }
+    //     let mut vecs = 0;
+    //     for buf in &self.bufs {
+    //         vecs += buf.chunks_vectored(&mut dst[vecs..]);
+    //         if vecs == dst.len() {
+    //             break;
+    //         }
+    //     }
+    //     vecs
+    // }
 }
 
 pub struct Cursor<'a, B> {
@@ -159,16 +159,16 @@ impl<'a, B: Buf> Buf for Cursor<'a, B> {
         }
     }
 
-    #[inline]
-    fn chunks_vectored<'t>(&'t self, dst: &mut [IoSlice<'t>]) -> usize {
-        self.buf.chunks_vectored(dst)
-    }
+    // #[inline]
+    // fn chunks_vectored<'t>(&'t self, dst: &mut [IoSlice<'t>]) -> usize {
+    //     self.buf.chunks_vectored(dst)
+    // }
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-    use bytes::Bytes;
+    use ntex_bytes::Bytes;
 
     #[test]
     fn cursor_advance() {

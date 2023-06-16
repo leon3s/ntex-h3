@@ -1,6 +1,6 @@
 use std::{cmp, io::Cursor};
 
-use bytes::{Buf, BufMut};
+use ntex_bytes::{Buf, BufMut};
 
 use super::{
     block::{

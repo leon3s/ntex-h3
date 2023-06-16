@@ -1,6 +1,6 @@
 use std::convert::TryFrom;
 
-use bytes::Buf;
+use ntex_bytes::Buf;
 use http::{Request, StatusCode};
 
 use crate::{error::Code, proto::headers::Header, qpack, quic, server::RequestStream, Error};

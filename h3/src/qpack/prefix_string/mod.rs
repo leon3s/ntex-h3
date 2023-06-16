@@ -4,7 +4,7 @@ mod encode;
 
 use std::fmt;
 
-use bytes::{Buf, BufMut};
+use ntex_bytes::{Buf, BufMut};
 
 pub use self::bitwin::BitWindow;
 

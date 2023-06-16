@@ -12,7 +12,7 @@ use std::{
     task::{self, Poll},
 };
 
-use bytes::{Buf, Bytes, BytesMut};
+use ntex_bytes::{Buf, Bytes, BytesMut};
 
 use futures::{
     ready,
